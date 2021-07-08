@@ -1,26 +1,20 @@
 #Main file
 
 #imported .pys
-import character, maker
+import character
 
 #never ending loop
 while True:
-	reply = input('Welcome to the end of the world! Please enter your name: ')
-	if reply == 'stop' : break																									
-	elif not reply.isascii():
-		print('Bad Input, Try again')
+	reply = input('[N]ew or [R]eturning character?')
+	if reply == 'stop' : break
+	elif reply == 'N'or'n':
+		character.characterMaker()
+	elif reply == 'R'or'r':
+		#load character somehow
+		print('TODO: load character somehow')
 	else:
-		name = character.Name(reply)
+		print('Bad Input, Try again')
 
-	silver = character.startCash()
-	food = character.startFood()
-	#debug print
-	print('your name is ', name,'and you have ', silver, ' silver', ' You also have a waterskin and ', food, ' days of food.')
-
-	abil = character.Abilities()
-	#debug print 2
-	print('your Agility is: ', abil[0], 'your Presence is: ', abil[1], 'your Strength is: ', abil[2], 'your Toughness is: ', abil[3])
-
-	maker.playerWriter(name, silver, food, abil[0], abil[1], abil[2], abil[3])
+	reply = input('Yeah I havent gotten this far yet...')
 
 	print('')

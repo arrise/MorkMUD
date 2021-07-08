@@ -1,6 +1,27 @@
 #File containing character creation functions
 
-import random
+import random, maker
+
+#Builds basic character with money, food and ability scores
+def characterMaker():
+	reply = input('Welcome to the end of the world! Please enter your name: ')
+	if not reply.isascii():
+		print('Bad Input, Try again')
+	else:
+		abil = Abilities()
+		name = reply
+		silver = startCash()
+		food = startFood()
+		#Takes all the player's info and stores it in a .csv file
+		maker.playerWriter(name, silver, food, abil[0], abil[1], abil[2], abil[3])
+
+	#debug print
+	print('your name is:', name,'and you have', silver, 'silver', 'You also have a waterskin and', food, 'days of food.')
+
+	#debug print 2
+	print('your Agility is:', abil[0], 'your Presence is:', abil[1], 'your Strength is:', abil[2], 'your Toughness is:', abil[3])
+	
+	return
 
 def Name(x):
 	charName = x
