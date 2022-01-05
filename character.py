@@ -1,12 +1,16 @@
 #File containing character creation functions
-
+#imports
 import random, maker
+from os import path
 
 #Builds basic character with money, food and ability scores
 def characterMaker():
+	success = 0
 	reply = input('Welcome to the end of the world! Please enter your name: ')
 	if not reply.isascii():
 		print('Bad Input, Try again')
+	elif path.exists(reply+'.csv'):
+		print('Name already taken try again.')
 	else:
 		abil = Abilities()
 		name = reply
@@ -14,27 +18,25 @@ def characterMaker():
 		food = startFood()
 		#Takes all the player's info and stores it in a .csv file
 		maker.playerWriter(name, silver, food, abil[0], abil[1], abil[2], abil[3])
+		success = 1
+		#debug print
+		print('your name is:', name,'and you have', silver, 'silver', 'You also have a waterskin and', food, 'days of food.')
+		#debug print 2
+		print('your Agility is:', abil[0], 'your Presence is:', abil[1], 'your Strength is:', abil[2], 'your Toughness is:', abil[3])
 
-	#debug print
-	print('your name is:', name,'and you have', silver, 'silver', 'You also have a waterskin and', food, 'days of food.')
+	return success
 
-	#debug print 2
-	print('your Agility is:', abil[0], 'your Presence is:', abil[1], 'your Strength is:', abil[2], 'your Toughness is:', abil[3])
-	
-	return
-
-def Name(x):
-	charName = x
-	return charName
-
+#calculates starting silver
 def startCash():
 	charCash = (random.randint(2, 12) * 10)
 	return charCash
 
+#calculates starting food
 def startFood():
 	charFood = random.randint(1, 4)
 	return charFood
 
+#calculates starting backpack/wagon/donkey
 def pack():
 	charPackInt = random.randint(1, 6)
 	
@@ -51,6 +53,7 @@ def pack():
 
 	return charPack
 
+#calculates starting items
 def items():
 	charItemsInt = random.randint(1, 12)
 

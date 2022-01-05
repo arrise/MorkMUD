@@ -3,7 +3,8 @@ import csv
 
 #Creates the player character file as a .csv
 def playerWriter(name, silver, food, agil, pres, stre, toug):
-	with open('testplayer.csv', 'w', newline = '') as csvfile:
+	fileName = name + '.csv'
+	with open(fileName, 'w', newline = '') as csvfile:
 		fieldnames = ['Name', 'Silver', 'Food', 'Agility', 'Presence', 'Strength', 'Toughness']
 		writer = csv.DictWriter(csvfile, fieldnames = fieldnames)
 		writer.writeheader()
